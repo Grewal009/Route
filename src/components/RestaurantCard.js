@@ -2,7 +2,7 @@ import { IMAGE_CDN } from "../utils/constants";
 const RestaurantCard = ({ rest }) => {
   const { name, cloudinaryImageId } = rest.info;
   return (
-    <li className=" m-1 w-[192px] cursor-pointer rounded-xl border-2 border-transparent hover:border-slate-400">
+    <li className=" m-1 w-[192px] cursor-pointer rounded-xl border-2 border-transparent bg-slate-100 hover:border-slate-400">
       <img
         src={IMAGE_CDN + cloudinaryImageId}
         className="m-1 flex h-28 w-[180px] justify-center rounded-lg"
