@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { RESTRO_URL } from "../utils/constants";
 import RestaurantCard from "./RestaurantCard";
+import { Link } from "react-router-dom";
 
 const Restaurant = () => {
   const [restaurantList, setRestaurantList] = useState(null);
@@ -24,7 +25,13 @@ const Restaurant = () => {
   return (
     <ul className="flex flex-wrap justify-center">
       {restaurantList.map((restaurant) => (
-        <RestaurantCard rest={restaurant} key={restaurant.info.id} />
+        <Link to={"/restaurant/" + restaurant.info.id}>
+          <RestaurantCard
+            rest={restaurant}
+            key={restaurant.info.id}
+            id={restaurant.info.id}
+          />
+        </Link>
       ))}
     </ul>
   );
