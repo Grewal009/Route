@@ -1,10 +1,10 @@
-import UserClass from "./classComponents/UserClass";
+import ParentClass from "./classComponents/ParentClass";
 
 const About = () => {
   return (
     <>
       <h1>About page</h1>
-      <UserClass name="first child" />
+      <ParentClass />
     </>
   );
 };
