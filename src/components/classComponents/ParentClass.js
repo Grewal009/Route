@@ -10,6 +10,14 @@ class ParentClass extends React.Component {
     console.log("parent componentDidMount");
   }
 
+  componentDidUpdate() {
+    console.log("patent componentDidUpdate");
+  }
+
+  componentWillUnmount() {
+    console.log("parent componentWillUnmount");
+  }
+
   render() {
     console.log("parent render");
     return (
