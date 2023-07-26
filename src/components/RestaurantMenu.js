@@ -3,12 +3,13 @@ import { useParams } from "react-router-dom";
 
 import { RESTAURANT_MENU } from "../utils/constants";
 import MenuCard from "./MenuCard";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () => {
-  const [menu, setMenu] = useState(null);
-
   const params = useParams();
   console.log(params);
+
+  const menu = useRestaurantMenu(params);
 
   async function fetchRestaurantMenu() {
     const data = await fetch(RESTAURANT_MENU + params.id);
