@@ -2,9 +2,12 @@ import { useEffect, useState } from "react";
 import { RESTRO_URL } from "../utils/constants";
 import RestaurantCard from "./RestaurantCard";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Restaurant = () => {
   const [restaurantList, setRestaurantList] = useState(null);
+
+  const status = useOnlineStatus();
 
   async function fetchRestaurants() {
     const data = await fetch(RESTRO_URL);
@@ -22,6 +25,10 @@ const Restaurant = () => {
   }, []);
 
   if (!restaurantList) return null;
+
+  if (!status) {
+    return <h1>You are not connected to the internet. You are offline</h1>;
+  }
   return (
     <ul className="flex flex-wrap justify-center">
       {restaurantList.map((restaurant) => (
