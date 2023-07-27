@@ -7,8 +7,6 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 const Restaurant = () => {
   const [restaurantList, setRestaurantList] = useState(null);
 
-  const status = useOnlineStatus();
-
   async function fetchRestaurants() {
     const data = await fetch(RESTRO_URL);
     const json = await data.json();
@@ -24,12 +22,11 @@ const Restaurant = () => {
     fetchRestaurants();
   }, []);
 
-  if (!restaurantList) return null;
+  const status = useOnlineStatus();
+  if (!status)
+    return <h1>You are offline, Please check your internet connection.</h1>;
 
-  if (!status) {
-    return <h1>You are not connected to the internet. You are offline</h1>;
-  }
-  return (
+  return !restaurantList ? null : (
     <ul className="flex flex-wrap justify-center">
       {restaurantList.map((restaurant) => (
         <Link to={"/restaurant/" + restaurant.info.id} key={restaurant.info.id}>
