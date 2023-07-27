@@ -23,7 +23,7 @@ const Restaurant = () => {
   }, []);
 
   const status = useOnlineStatus();
-  if (!status)
+  if (status === false)
     return <h1>You are offline, Please check your internet connection.</h1>;
 
   return !restaurantList ? null : (
