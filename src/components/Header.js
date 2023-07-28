@@ -5,7 +5,7 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Header = () => {
   const bgActive =
-    "underline decoration-green-500 decoration-[4px] underline-offset-4";
+    "underline decoration-green-500 decoration-4 underline-offset-4";
 
   const status = useOnlineStatus();
   return (
