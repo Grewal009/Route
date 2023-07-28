@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { RESTRO_URL } from "../utils/constants";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { withDiscountedInfo } from "./RestaurantCard";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+
+const RestaurantCardWithPromotion = withDiscountedInfo(RestaurantCard);
 
 const Restaurant = () => {
   const [restaurantList, setRestaurantList] = useState(null);
@@ -30,7 +32,11 @@ const Restaurant = () => {
     <ul className="flex flex-wrap justify-center">
       {restaurantList.map((restaurant) => (
         <Link to={"/restaurant/" + restaurant.info.id} key={restaurant.info.id}>
-          <RestaurantCard rest={restaurant} id={restaurant.info.id} />
+          {restaurant?.info?.aggregatedDiscountInfoV3?.header ? (
+            <RestaurantCardWithPromotion rest={restaurant} />
+          ) : (
+            <RestaurantCard rest={restaurant} />
+          )}
         </Link>
       ))}
     </ul>

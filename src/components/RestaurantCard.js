@@ -13,4 +13,21 @@ const RestaurantCard = ({ rest, id }) => {
     </li>
   );
 };
+
+export const withDiscountedInfo = (RestaurantCard) => {
+  return (props) => {
+    //console.log(props.rest.info.aggregatedDiscountInfoV3);
+    const { header, subHeader, discountTag } =
+      props.rest.info.aggregatedDiscountInfoV3;
+    return (
+      <div>
+        <label className="absolute mx-[10px] my-[6px] rounded-md bg-slate-700  px-2 font-serif text-xs font-medium  text-white ">
+          {header} {subHeader}
+        </label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
+
 export default RestaurantCard;
